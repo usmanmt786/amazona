@@ -3,7 +3,7 @@ import {store} from '@/utils/Store'
 import {useContext} from 'react'
 
 function Header(){
-const {state, dispatch} = useContext(store)
+const {state} = useContext(store)
 const {cart} = state
 return(
 <header>
