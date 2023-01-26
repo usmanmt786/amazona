@@ -5,6 +5,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import {XCircleIcon} from '@heroicons/react/24/outline'
 import {useRouter} from 'next/router'
+import dynamic from 'next/dynamic'
 function CartScreen(){
 const router=useRouter()
 const {state,dispatch} = useContext(store)
@@ -103,4 +104,4 @@ Subtotal ({cartItems.reduce((a,c)=>a+c.quantity,0)}): ${cartItems.reduce((a,c)=>
 )
 }
 
-export default CartScreen
+export default dynamic(()=> Promise.resolve(CartScreen),{ssr:false})
