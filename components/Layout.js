@@ -1,6 +1,8 @@
 import Head from 'next/head';
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
+import {ToastContainer} from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 export default function Layout({children,title}) {
   return (
     <>
@@ -14,6 +16,7 @@ export default function Layout({children,title}) {
 <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
         <link rel="icon" href="/favicon.ico" />
       </Head>
+<ToastContainer position="bottom-center" limit={1}/>
       <div className="flex min-h-screen flex-col justify-between">
        <Header/>
 <main className="container m-auto mt-4 px-4">{children}</main>

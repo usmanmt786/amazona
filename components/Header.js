@@ -1,8 +1,10 @@
 import  Link from 'next/link'
 import {store} from '@/utils/Store'
 import {useContext,useState,useEffect} from 'react'
+import {useSession} from 'next-auth/react'
 
 function Header(){
+const {status, data:session} = useSession()
 const {state} = useContext(store)
 const {cart} = state
 const [cartItemsCount,setCartItemsCount]=useState(0)
@@ -23,9 +25,13 @@ return(
 )}
 </a>
 </Link>
-<Link href="/login" legacyBehavior>
-<a className="p-2">Login</a>
-</Link>
+
+{status === "loading" ? ('loading')
+: session?.user ? (session.user.name):
+(<Link href="/login" legacyBehavior><a className="p-2">Login</a>
+</Link>)
+}
+
 </div>
 </nav>
 </header>
