@@ -59,7 +59,7 @@ height={50}
 <td className="px-5 text-right">
 <select 
 value={item.quantity}
-className="bg-transparent"
+
 onChange={(e)=>{
 updateCartHandler(item, e.target.value)
 }}
@@ -92,7 +92,7 @@ Subtotal ({cartItems.reduce((a,c)=>a+c.quantity,0)}): ${cartItems.reduce((a,c)=>
 
 </li>
 <li>
-<button className="primary-button w-full" onClick={()=>router.push('/shipping')}>Checkout</button>
+<button className="primary-button w-full" onClick={()=>router.push('login?redirect=/shipping')}>Checkout</button>
 </li>
 </ul>
 </div> 
