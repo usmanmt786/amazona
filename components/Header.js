@@ -20,7 +20,7 @@ dispatch({type:"CART_RESET"})
 signOut({callbackUrl:'/login'})
 }
 return(
-<header>
+<header className="sticky top-0 bg-white">
 <nav className="flex h-12 px-4 justify-between shadow-md items-center">
 <Link href="/" legacyBehavior>
 <a className="text-2xl font-bold">Amazona</a>
