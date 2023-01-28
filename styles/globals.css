@@ -17,7 +17,10 @@ box-sizing:border-box;
 @apply m-5 block rounded-lg border border-gray-200 shadow-md;
 }
 .primary-button{
-@apply rounded bg-amber-300 py-2 px-4 outline-none hover:bg-amber-400 active:bg-amber-500
+@apply rounded bg-amber-300 py-2 px-4 shadow outline-none hover:bg-amber-400 active:bg-amber-500
+}
+.default-button{
+@apply rounded bg-gray-200 py-2 px-4 shadow outline-none hover:bg-gray-300 active:bg-gray-400
 }
 input,
 select,
