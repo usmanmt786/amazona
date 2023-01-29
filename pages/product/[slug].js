@@ -5,24 +5,30 @@ import Link from 'next/link'
 import Image from 'next/image'
 import {store} from '@/utils/Store'
 import {useContext} from 'react'
-
-function ProductScreen(){
+import db from '@/utils/db'
+import Product from '@/models/Product'
+import axios from 'axios'
+import {toast} from 'react-toastify'
+function ProductScreen(props){
 const {state, dispatch} = useContext(store)
-const {query} = useRouter()
-const {slug} = query
-const product= data.products.find(x => x.slug===slug)
-const addToCartHandler = () => {
+const router = useRouter()
+
+const {product}= props
+const addToCartHandler =async () => {
 const existItem = state.cart.cartItems.find(item=> item.slug===product.slug)
 const quantity = existItem ? existItem.quantity+1:1;
-if(product.countInStock < quantity){
-alert("Sorry. Product is out of stock")
+const {data} = await axios.get(`/api/products/${product._id}`)
+if(data.countInStock < quantity){
+toast.error("Sorry. Product is out of stock")
 return;
 }
 dispatch({type:"CART_ADD_ITEM",payload:{...product,quantity}})
+
+router.push('/cart')
 }
 if(!product){
 return(
-<Layout>
+<Layout title="Product not found">
 <div>Product not found</div>
 </Layout>
 )
@@ -89,3 +95,19 @@ Status
 )}
 }
 export default ProductScreen
+
+export async function getServerSideProps(context){
+const {params} = context
+const {slug} = params
+
+await db.connect()
+const product=await Product.findOne({slug}).lean()
+await db.disconnect()
+return {
+
+props:{
+product:product ? db.convertDocToObj(product) : null
+}
+}
+
+}
