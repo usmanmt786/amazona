@@ -25,6 +25,7 @@ paymentMethod:selectedPaymentMethod
 )
 router.push('/placeorder')
 }
+console.log(cart)
 useEffect(()=>{
 if(!shippingAddress){
 return router.push('/shipping')

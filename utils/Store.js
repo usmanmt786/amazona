@@ -37,9 +37,9 @@ return{
 ...state,
 cart:{
 ...state.cart,
-shippingAdress:{
+shippingAddress:{
 ...state.cart.shippingAddress,
-data:action.payload}
+...action.payload}
 }
 }
 }
@@ -49,6 +49,15 @@ return{
 cart:{
 ...state.cart,
 paymentMethod:action.payload
+}
+}
+} 
+case 'CART_CLEAR_ITEMS':{
+return {
+...state,
+cart:{
+...state.cart,
+cartItems:[]
 }
 }
 }

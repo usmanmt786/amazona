@@ -8,9 +8,9 @@ export default NextAuth({
 session:{
 strategy: 'jwt',
 },
-callback:{
+callbacks:{
 async jwt({token, user}){
-if(user?._id) tken._id= user._id
+if(user?._id) token._id= user._id
 if(user?.isAdmin) token.isAdmin = user.isAdmin
 return token;
 },
@@ -27,6 +27,7 @@ await db.connect()
 const user = await User.findOne({email:credentials.email, })
 await db.disconnect()
 if(user && bcryptjs.compareSync(credentials.password, user.password)){
+
 return {
 _id: user._id,
 name:user.name,
