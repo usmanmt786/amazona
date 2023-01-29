@@ -8,6 +8,7 @@ import {signOut} from 'next-auth/react'
 import Cookies from 'js-cookie'
 function Header(){
 const {status, data:session} = useSession()
+
 const {state,dispatch} = useContext(store)
 const {cart} = state
 const [cartItemsCount,setCartItemsCount]=useState(0)
