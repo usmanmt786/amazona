@@ -1,19 +1,9 @@
 import  Link from 'next/link'
-import {store} from '@/utils/Store'
-import {useContext} from 'react'
 
-function ProductItem({product}){
-const {state, dispatch} = useContext(store)
-const addToCartHandler = () => {
-const existItem = state.cart.cartItems.find(item=> item.slug===product.slug)
-const quantity = existItem ? existItem.quantity+1:1;
-if(product.countInStock < quantity){
-alert("Sorry. Product is out of stock")
-return;
-}
-dispatch({type:"CART_ADD_ITEM",payload:{...product,quantity}})
 
-}
+function ProductItem({product,addToCartHandler}){
+
+
 
 return (
 <div className="card">
@@ -32,7 +22,7 @@ className="rounded shadow"
 </Link>
 <p className="mb-2">{product.brand}</p>
 <p>&#36;{product.price}</p>
-<button className="primary-button" type="button" onClick={addToCartHandler}>Add to cart</button>
+<button className="primary-button" type="button" onClick={()=>addToCartHandler(product)}>Add to cart</button>
 </div>
 </div>
 )
